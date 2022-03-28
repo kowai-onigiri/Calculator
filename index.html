@@ -8,30 +8,35 @@
     <body>
         <div class="header">Calculator</div>
         <div class="calculatorBody">
-            <div class="calculatorDisplay"></div>
+            <div class="calculatorDisplay">
+                <div class="previousOutput"></div>
+                <div class="currentOutput"></div>
+            </div>
             <div class="cleDelBtn">
-                <button class="clear">Clear</button>
-                <button class="delete">Delete</button>
+                <button class="clear data-clear">Clear</button>
+                <button class="delete data-delete">Delete</button>
             </div>
             <div class="calculationBtn">
-                <button class="btn sev">7</button>
-                <button class="btn eig">8</button>
-                <button class="btn nin">9</button>
-                <button class="btn div">÷</button>
-                <button class="btn fou">4</button>
-                <button class="btn fiv">5</button>
-                <button class="btn six">6</button>
-                <button class="btn mul">×</button>
-                <button class="btn one">1</button>
-                <button class="btn two">2</button>
-                <button class="btn thr">3</button>
-                <button class="btn sub">-</button>
-                <button class="btn dec">.</button>
-                <button class="btn zer">0</button>
-                <button class="btn equ">=</button>
-                <button class="btn add">+</button>
+                <button class="btn sev data-number">7</button>
+                <button class="btn eig data-number">8</button>
+                <button class="btn nin data-number">9</button>
+                <button class="btn div data-operation">÷</button>
+                <button class="btn fou data-number">4</button>
+                <button class="btn fiv data-number">5</button>
+                <button class="btn six data-number">6</button>
+                <button class="btn mul data-operation">×</button>
+                <button class="btn one data-number">1</button>
+                <button class="btn two data-number">2</button>
+                <button class="btn thr data-number">3</button>
+                <button class="btn sub data-operation">-</button>
+                <button class="btn dec data-number">.</button>
+                <button class="btn zer data-number">0</button>
+                <button class="btn equ data-equals">=</button>
+                <button class="btn add data-operation">+</button>
             </div>
         </div>
         <footer>kowai-onigiri | <a href= "https://github.com/kowai-onigiri/Calculator" target="_blank">Source</a> | 2022</footer>
+
+        <script src="script.js"></script>
     </body>
 </html>
