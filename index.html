@@ -12,31 +12,35 @@
                 <div class="previousOutput"></div>
                 <div class="currentOutput"></div>
             </div>
-            <div class="cleDelBtn">
-                <button class="clear data-clear">Clear</button>
-                <button class="delete data-delete">Delete</button>
-            </div>
-            <div class="calculationBtn">
-                <button class="btn sev data-number">7</button>
-                <button class="btn eig data-number">8</button>
-                <button class="btn nin data-number">9</button>
-                <button class="btn div data-operation">÷</button>
-                <button class="btn fou data-number">4</button>
-                <button class="btn fiv data-number">5</button>
-                <button class="btn six data-number">6</button>
-                <button class="btn mul data-operation">×</button>
-                <button class="btn one data-number">1</button>
-                <button class="btn two data-number">2</button>
-                <button class="btn thr data-number">3</button>
-                <button class="btn sub data-operation">-</button>
-                <button class="btn dec data-number">.</button>
-                <button class="btn zer data-number">0</button>
-                <button class="btn equ data-equals">=</button>
-                <button class="btn add data-operation">+</button>
+            <div class="calculatorKeys">
+                <div class="calculationBtn">
+
+                    <button class="btn add data-operation" data-action="add">+</button>
+                    <button class="btn sev data-number">7</button>
+                    <button class="btn fou data-number">4</button>
+                    <button class="btn one data-number">1</button>
+                    <button class="btn zer data-number">0</button>
+
+                    <button class="btn sub data-operation" data-action="subtract">-</button>
+                    <button class="btn eig data-number">8</button>
+                    <button class="btn fiv data-number">5</button>
+                    <button class="btn two data-number">2</button>
+                    <button class="btn dec data-number" data-action="decimal">.</button>
+
+                    <button class="btn mul data-operation" data-action="multiply">&times;</button>
+                    <button class="btn nin data-number">9</button>
+                    <button class="btn six data-number">6</button>
+                    <button class="btn thr data-number">3</button>
+                    <button class="btn clear data-clear" data-action="clear">AC</button>
+
+                    <button class="btn div data-operation" data-action="divide">÷</button>
+                    <button class="btn equ data-equals" data-action="calculate">=</button>
+                    
+                </div>
             </div>
         </div>
         <footer>kowai-onigiri | <a href= "https://github.com/kowai-onigiri/Calculator" target="_blank">Source</a> | 2022</footer>
 
-        <script src="script.js"></script>
+        <script src="myscript.js"></script>
     </body>
 </html>

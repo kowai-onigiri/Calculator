@@ -21,7 +21,7 @@ body {
 .calculatorBody {
     display: flex;
     flex-direction: column;
-    height: 550px;
+    height: 500px;
     width: 350px;
     justify-content: center;
     align-items: center;
@@ -66,18 +66,45 @@ body {
     padding-right: 10px;
 }
 
-.cleDelBtn {
+
+
+
+
+.calculatorKeys {
     display: flex;
-    flex-direction: row;
-    margin: 20px;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calculationBtn{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     width: 300px;
-    
+    justify-content: space-between;
+    height: 300px;
+    transform: translateY(20px);
+}
+
+.btn {
+    width: 65px;
+    height: 55px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(54, 54, 54);
+    font-size: 28px;
+    border: 3px solid rgb(54, 54, 54);
+    border-radius: 10px;
+    font-family: monospace;
+    box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.4);
+    padding: 5px;
+    margin: 2px;
 }
 
 .clear {
-    width: 130px;
-    height: 70px;
+    width: 65px;
+    height: 55px;
     background-color: #C08A96;
     color: rgb(54, 54, 54);
     font-size: 24px;
@@ -87,39 +114,8 @@ body {
     box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.4);
 }
 
-.delete {
-    width: 130px;
-    height: 70px;
-    background-color: #8a94c0;
-    color: rgb(54, 54, 54);
-    font-size: 24px;
-    border: 3px solid rgb(54, 54, 54);
-    border-radius: 10px;
-    font-family: monospace;
-    box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.4);
-}
-
-.calculationBtn{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    justify-content: space-between;
-    height: 260px;
-}
-
-.btn {
-    width: 70px;
-    height: 60px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(54, 54, 54);
-    font-size: 28px;
-    border: 3px solid rgb(54, 54, 54);
-    border-radius: 10px;
-    font-family: monospace;
-    box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.4);
+.equ {
+    height: 235px;
 }
 
 .btn:hover {
