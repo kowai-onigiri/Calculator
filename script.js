@@ -1,157 +1,128 @@
-// constants and variables
-const numberButtons = document.querySelectorAll('.data-number');
-const operationButtons = document.querySelectorAll('.data-operation');
-const equalButton = document.querySelector('.data-equals');
-const deleteButton = document.querySelector('.data-delete');
-const clearButton = document.querySelector('.data-clear');
-
-let firstNum = '';
-let secondNum = '';
-let operator = '';
-
-//specific buttons
-
-let oneBtn = document.querySelector('.one');
-let twoBtn = document.querySelector('.two');
-let thrBtn = document.querySelector('.thr');
-let fouBtn = document.querySelector('.fou');
-let fivBtn = document.querySelector('.fiv');
-let sixBtn = document.querySelector('.six');
-let sevBtn = document.querySelector('.sev');
-let eigBtn = document.querySelector('.eig');
-let ninBtn = document.querySelector('.nin');
-let zerBtn = document.querySelector('.zer');
-
-
-
-const currentOutput = document.querySelector('.currentOutput');
-const previousOutput = document.querySelector('.previousOutput');
-
-
-function output(digit) {
-    currentOutput.innerText = digit;
+const calculator = {
+    displayValue: '0',
+    firstOperand: null,
+    waitingForSecondOperand: false,
+    operator: null,
 }
 
-function returnDigits() {
-    oneBtn.addEventListener('click', () => {
-        output(1);
-    });
-
-    twoBtn.addEventListener('click', () => {
-        output(2);
-    });
-
-    thrBtn.addEventListener('click', () => {
-        output(3);
-    });
-
-    fouBtn.addEventListener('click', () => {
-        output(4);
-    });
-
-    fivBtn.addEventListener('click', () => {
-        output(5);
-    });
-
-    sixBtn.addEventListener('click', () => {
-        output(6);
-    });
-
-    sevBtn.addEventListener('click', () => {
-        output(7);
-    });
-
-    eigBtn.addEventListener('click', () => {
-        output(8);
-    });
-
-    ninBtn.addEventListener('click', () => {
-        output(9);
-    });
-
-    zerBtn.addEventListener('click', () => {
-        output(0);
-    });
-
-}
-
-//create output divs
-// const previousOutput = document.querySelector('.previousOutput');
-// const previousOpTxt = document.createElement('div');
-// previousOpTxt.classList.add('previousOp');
-
-// previousOpTxt.appendChild(previousOutput);
+const lastOperationScreen = document.getElementById('lastOperationScreen');
 
 
-// const currentOutput = document.querySelector('.currentOutput');
-// const currentOpTxt = document.createElement('div');
-// currentOpTxt.classList.add('currentOp');
+function inputDigit(digit) {
+    const { displayValue, waitingForSecondOperand } = calculator;
 
-// currentOpTxt.appendChild(currentOutput);
+    if (waitingForSecondOperand === true) {
+        calculator.displayValue = digit;
+        calculator.waitingForSecondOperand = false;
+    } else {
+        calculator.displayValue = displayValue === '0' ? digit : displayValue + digit;
 
-
-
-// operations
-function add(a, b) {
-    const answer = parseFloat(a) + parseFloat(b);
-
-    return answer
-}
-
-function subtract(a, b) {
-    const answer = parseFloat(a) - parseFloat(b);
-
-    return answer
-}
-
-function multiply(a, b) {
-    const answer = parseFloat(a) * parseFloat(b);
-
-    return answer
-}
-
-function divide(a, b) {
-    if (parseFloat(b) == 0) {
-        return "error";
     }
-    else {
-        return parseFloat(a) / parseFloat(b);
+    console.log(calculator);
+}
+
+function inputDecimal(dot) {
+    if (calculator.waitingForSecondOperand === true) {
+        calculator.displayValue = '0.';
+        calculator.waitingForSecondOperand = false;
+        return;
+    }
+    
+    if (!calculator.displayValue.includes(dot)) {
+        calculator.displayValue += dot;
     }
 }
 
+function handleOperator(nextOperator) {
+    const { firstOperand, displayValue, operator } = calculator;
+    const inputValue = parseFloat(displayValue);
+
+    if (operator && calculator.waitingForSecondOperand) {
+        calculator.operator = nextOperator;
+        console.log(calculator);
+        return;
+    }
+
+    if (firstOperand === null && !isNaN(inputValue)) {
+        calculator.firstOperand = inputValue;
+    } else if (operator) {
+        const result = calculate(firstOperand, inputValue, operator);
+
+        calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
+        lastOperationScreen.textContent = `${firstOperand} ${operator} ${inputValue} ${nextOperator}`;
+        calculator.firstOperand = result;
+    }
+
+    calculator.waitingForSecondOperand = true;
+    calculator.operator = nextOperator;
+    
+
+    console.log(calculator);
+}
+
+function calculate(firstOperand, secondOperand, operator) {
+    if (operator === '+') {
+        return firstOperand + secondOperand;
+    } else if (operator === "-") {
+        return firstOperand - secondOperand;
+    } else if (operator === '*') {
+        return firstOperand * secondOperand;
+    } else if (operator === '/') {
+        return firstOperand / secondOperand;
+    }
+    lastOperationScreen.textContent = `${firstOperand} ${currentOperation} ${secondOperand} =`
+    // prevCalc.value = operator;
+    return secondOperand;
+    
+}
+
+function resetCalculator() {
+    calculator.displayValue = '0';
+    calculator.firstOperand = null;
+    calculator.waitingForSecondOperand = false;
+    calculator.operator = null;
+    lastOperationScreen.textContent = '';
+    console.log(calculator);
+}
+
+function updateDisplay() {
+    const display = document.querySelector('.currentOutput');
+    display.value = calculator.displayValue;
+}
+
+updateDisplay();
 
 
-// final calculation function
 
-function operate(operator, firstNum, secondNum) {
-    switch(operator) {
+const keys = document.querySelector('.calculatorKeys');
+keys.addEventListener('click', (event) => {
+    const { target } = event;
+    const { value } = target;
+    if (!target.matches('button')) {
+        return;
+    }
+
+    switch (value) {
         case '+':
-            return add(firstNum, secondNum);
-            break;
         case '-':
-            return subtract(firstNum, secondNum);
-            break;
         case '*':
-            return multiply(firstNum, secondNum);
-            break;
         case '/':
-            return divide(firstNum, secondNum);
+        case '=':
+            handleOperator(value);
+            break;
+        case '.':
+            inputDecimal(value);
+            break;
+        case 'all-clear':
+            resetCalculator();
+            break;
+        default:
+            if (Number.isInteger(parseFloat(value))) {
+                inputDigit(value);
+            }
     }
-}
 
-
-
-// function digitPress() {
-//     const currentOutput = document.querySelector('.currentOutput');
-//     currentOutput.innerText = 'output';
-// }
-
-returnDigits();
-
-
-
-
-
-
-
+    updateDisplay();
+    
+});
 
