@@ -66,6 +66,8 @@ body {
     padding-right: 10px;
     text-align: right;
     border-radius: 8px;
+    border: none;
+    background-color: transparent;
 }
 
 
